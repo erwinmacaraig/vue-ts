@@ -4,6 +4,7 @@ import { usePosts } from "../stores/posts"
 import { periods } from "../constants"
 
 const postsStore = usePosts()
+postsStore.fetchPosts()
 
 // const posts = computed<TimelinePost[]>(() => { 
 //     return postsStore.ids.map(
