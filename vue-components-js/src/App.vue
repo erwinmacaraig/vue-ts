@@ -2,6 +2,8 @@
 import Greeting from "@/components/Greeting.vue"
 import User from '@/components/User.vue'
 import AppForm from '@/components/Form.vue'
+import Home from '@/components/Home.vue'
+import About from '@/components/About.vue'
 
 export default {
   name: 'App',
@@ -9,11 +11,14 @@ export default {
     Greeting,
     User,
     AppForm,
+    Home,
+    About
   },
   data() {
     return {
       age: 20,
-      help: 'This is some help text.'
+      help: 'This is some help text.',
+      componentName: 'Home'
     }
   },
   methods: {
@@ -26,9 +31,18 @@ export default {
   }
 }
 </script>
-
 <template>
   <hr>
+  <div class="dynamic-components">
+    <select name="" id="" v-model="componentName">
+      <option value="Home">Home</option>
+      <option value="About">About</option>
+    </select>
+    <keep-alive>
+      <component :is="componentName"></component>
+    </keep-alive>
+
+  </div>
   <h2>SLOTS</h2>
   <app-form>
     <template v-slot:help>
