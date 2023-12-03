@@ -130,3 +130,13 @@
         </div>
     </section>
 </template>
+
+<script>
+export default {
+    name: 'manage',
+    // beforeRouteEnter(to, from, next) {
+    //     console.log('route inside component');
+    //     next();
+    // }
+}
+</script>

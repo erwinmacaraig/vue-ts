@@ -17,7 +17,14 @@ const routes = [
   {
     name: 'manage',
     path: "/manage-music",
-    component: Manage
+    beforeEnter: (to, from, next) => {
+      console.log('Manage Route Guard');
+      next();
+    },
+    component: Manage,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/manage',
@@ -35,4 +42,17 @@ const router = createRouter({
   linkExactActiveClass: 'text-yellow-500',
 })
 
+router.beforeEach((to, from, next) => {
+  // console.log(to, from);
+  console.log('this is coming from the global guard');
+  console.log(to.meta);
+
+  if (!to.meta.requiresAuth) {
+    next();
+    return;
+  }
+
+  // now we check the store.
+
+});
 export default router

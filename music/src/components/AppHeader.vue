@@ -34,6 +34,11 @@ export default {
         toggleAuthModal() {
             this.modalStore.isOpen = !this.modalStore.isOpen
             console.log(this.modalStore.isOpen);
+        },
+        signOut() {
+            if (this.$route.meta.requiresAuth) {
+                this.$router.push({ name: "home" })
+            }
         }
     }
 }
