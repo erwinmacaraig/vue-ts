@@ -42,17 +42,17 @@ const router = createRouter({
   linkExactActiveClass: 'text-yellow-500',
 })
 
-router.beforeEach((to, from, next) => {
-  // console.log(to, from);
-  console.log('this is coming from the global guard');
-  console.log(to.meta);
+// router.beforeEach((to, from, next) => {
+//   // console.log(to, from);
+//   console.log('this is coming from the global guard');
+//   console.log(to.meta);
 
-  if (!to.meta.requiresAuth) {
-    next();
-    return;
-  }
+//   if (!to.meta.requiresAuth) {
+//     next();
+//     return;
+//   }
 
-  // now we check the store.
+//   // now we check the store.
 
-});
+// });
 export default router
