@@ -10,12 +10,19 @@
                 <!-- Primary Navigation -->
                 <ul class="flex flex-row mt-1">
                     <!-- Navigation Links -->
+                    <li v-if="!userStore.userLoggedIn"><a class="px-2 text-white" href="#"
+                            @click.prevent="toggleAuthModal">Login / Register</a></li>
+                    <template v-else>
+                        <li>
+                            <router-link class="px-2 text-white" :to="{ name: 'manage' }">Manage</router-link>
+                        </li>
+                        <li>
+                            <a class="px-2 text-white" href="#" @click.prevent="userStore.signOut">Logout</a>
+                        </li>
+                    </template>
+
+
                     <li><router-link class="px-2 text-white" :to="{ name: 'about' }">About</router-link></li>
-                    <li>
-                        <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">Login / Register</a>
-                    </li>
-                    <li><router-link class="px-2 text-white" :to="{ name: 'manage' }">Manage</router-link>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -25,10 +32,11 @@
 <script>
 import { mapStores } from 'pinia'
 import useModalStore from '@/stores/modal'
+import useUserStore from '@/stores/user';
 export default {
     name: "AppHeader",
     computed: {
-        ...mapStores(useModalStore)
+        ...mapStores(useModalStore, useUserStore)
     },
     methods: {
         toggleAuthModal() {
